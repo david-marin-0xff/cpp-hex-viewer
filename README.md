@@ -1,13 +1,14 @@
-# How to Build and Use cpp-hex-viewer (Self Reminder)
+# How to Build and Use cpp-hex-viewer
 
 This project is a **console-based hex viewer written in C++**.
 It compiles into a native Windows executable and can read **any file** as raw hexadecimal bytes.
 
+<img width="1226" height="821" alt="image" src="https://github.com/user-attachments/assets/67b141ef-0c64-4d81-9efd-2820fadd4546" />
+
+
 ---
 
-## 1️⃣ Requirements (once)
-
-You only need this installed **once** on the system:
+## 1️⃣ Requirements 
 
 - Visual Studio Build Tools (MSVC)
 - Use **x64 Native Tools Command Prompt for VS**
@@ -109,7 +110,6 @@ main.exe ..\Downloads\file.bin
 ## 6️⃣ Important Notes
 
 - The program reads **any file** (text or binary)
-- The file does NOT need to be in the project folder
 - The program does NOT modify files (read-only)
 - Compilation requires MSVC
 - Running `main.exe` works in **any terminal**
@@ -119,9 +119,7 @@ main.exe ..\Downloads\file.bin
 ## 7️⃣ Common Mistakes to Avoid
 
 ❌ Running `cl` from PowerShell  
-❌ Forgetting to `cd` into the project folder  
-❌ Thinking the program only works with `test.bin`  
-
+  
 ✅ Compile once, reuse forever  
 ✅ Pass any file path you want  
 
