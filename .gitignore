@@ -1,0 +1,7 @@
+# Build artifacts
+*.exe
+*.obj
+*.pdb
+
+# Visual Studio / MSVC
+.vs/
