@@ -1,171 +1,133 @@
-# cpp-hex-viewer
+# How to Build and Use cpp-hex-viewer (Self Reminder)
 
-Console-based **hex viewer** written in **modern C++ (C++20)** for Windows.
-
-This project was created as a **first hands-on C++ project**, focusing on:
-- Native compilation
-- Binary file handling
-- Command-line tools
-- Minimal dependencies
+This project is a **console-based hex viewer written in C++**.
+It compiles into a native Windows executable and can read **any file** as raw hexadecimal bytes.
 
 ---
 
-## 1. How to use (self-reminder)
+## 1️⃣ Requirements (once)
 
-### Build (Windows / MSVC)
+You only need this installed **once** on the system:
 
-From the **Visual Studio x64 Native Tools Command Prompt**:
+- Visual Studio Build Tools (MSVC)
+- Use **x64 Native Tools Command Prompt for VS**
+- No Qt, no GUI libraries, no CMake required
 
+---
+
+## 2️⃣ Open the Correct Terminal
+
+⚠️ IMPORTANT  
+Always compile using:
+
+**Visual Studio 2026 x64 Native Tools Command Prompt**
+
+PowerShell alone will NOT work for compiling.
+
+---
+
+## 3️⃣ Go to the Project Folder
+
+You must be inside the folder that contains `main.cpp`.
+
+```bat
+cd C:\Users\David\cpp-hex-viewer
+```
+
+Verify files exist:
+
+```bat
+dir
+```
+
+You should see:
+- `main.cpp`
+
+---
+
+## 4️⃣ Compile the Program
+
+Run this command **from inside the project folder**:
+
+```bat
 cl /std:c++20 /EHsc main.cpp
+```
 
-This generates:
+This creates:
+- `main.exe` → the hex viewer program
 
-main.exe
-
----
-
-### Run
-
-Basic usage:
-
-main.exe file.bin
-
-Custom bytes per line:
-
-main.exe -n 32 file.bin
-
-Help:
-
-main.exe --help
+You only need to compile again if you change the code.
 
 ---
 
-### Output format
+## 5️⃣ How to Use the Program
 
-00000000  48 65 6C 6C 6F 20 77 6F 72 6C 64 0D 0A  |Hello world..|
+General syntax:
 
-- Left: File offset (hex)
-- Middle: Hexadecimal byte values
-- Right: ASCII preview (non-printable bytes shown as '.')
+```bat
+main.exe <file_path>
+```
 
----
-
-## 2. Technical specs (how this program works)
-
-### Language & standard
-
-- C++20
-- Compiled with MSVC (cl.exe)
+The program prints the file contents as hexadecimal bytes.
 
 ---
 
-### Memory management (RAII)
+### Examples
 
-- Uses std::vector<unsigned char> as a byte buffer
-- No manual new / delete
-- Memory is released automatically when objects go out of scope
+Read a binary file:
 
-Why this matters:
-- Prevents memory leaks
-- Safer than manual allocation
-- Idiomatic modern C++
+```bat
+main.exe test.bin
+```
 
----
+Read a text file:
 
-### File handling
+```bat
+main.exe notes.txt
+```
 
-- Uses std::ifstream with std::ios::binary
-- Reads the file in chunks (default: 16 bytes)
-- Does not load entire files into memory
-- Works with large files
+Read an image:
 
----
+```bat
+main.exe image.png
+```
 
-### Binary-safe reading
+Read a file in another folder (full path):
 
-file.read(reinterpret_cast<char*>(buffer.data()), buffer.size());
+```bat
+main.exe C:\Users\David\Downloads\file.bin
+```
 
-- unsigned char is used for raw bytes
-- reinterpret_cast is required because streams operate on char*
-- file.gcount() returns how many bytes were actually read
+Read a file using a relative path:
 
----
-
-### Command-line argument parsing
-
-- Uses argc / argv
-- Supports flags:
-  - -n <bytes>
-  - -h, --help
-- Manual parsing, no external libraries
+```bat
+main.exe ..\Downloads\file.bin
+```
 
 ---
 
-### Output formatting
+## 6️⃣ Important Notes
 
-- std::hex for hexadecimal output
-- std::setw and std::setfill('0') for fixed-width columns
-- ANSI escape codes for colored output:
-  - Offset: cyan
-  - Hex bytes: yellow
-  - ASCII: green
-
----
-
-## 3. Notes to my future self (C++ newbie notes)
-
-### Tooling lessons
-
-- PowerShell alone does NOT configure C++ compilers
-- The Visual Studio x64 Native Tools Command Prompt sets:
-  - PATH
-  - INCLUDE
-  - LIB
-- cl.exe only works when this environment is loaded
+- The program reads **any file** (text or binary)
+- The file does NOT need to be in the project folder
+- The program does NOT modify files (read-only)
+- Compilation requires MSVC
+- Running `main.exe` works in **any terminal**
 
 ---
 
-### C++ learning takeaways
+## 7️⃣ Common Mistakes to Avoid
 
-- C++ is not “hard”, it is explicit
-- Headers must be included correctly
-- Compiler errors are verbose but precise
-- Prefer standard library containers (std::vector, std::string)
-- Avoid manual memory management when possible
+❌ Running `cl` from PowerShell  
+❌ Forgetting to `cd` into the project folder  
+❌ Thinking the program only works with `test.bin`  
 
----
-
-### Design lessons
-
-- Start with console tools, not GUIs
-- Small focused programs teach more than large frameworks
-- Build incrementally:
-  1. Open file
-  2. Read bytes
-  3. Format output
-  4. Add features
+✅ Compile once, reuse forever  
+✅ Pass any file path you want  
 
 ---
 
-### Git and workflow notes
+## 8️⃣ Mental Model
 
-- Do not commit .exe files
-- Use .gitignore
-- Commit early and often
-- README files evolve over time
-
----
-
-## Future ideas
-
-- Pattern search in hex
-- Paging (less-style navigation)
-- Offset jump
-- Cross-platform build
-- Unit tests
-
----
-
-## License
-
-To be decided.
+- `cl main.cpp` → builds the tool  
+- `main.exe file` → uses the tool on any file
