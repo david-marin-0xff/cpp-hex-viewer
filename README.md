@@ -114,6 +114,9 @@ main.exe ..\Downloads\file.bin
 - Compilation requires MSVC
 - Running `main.exe` works in **any terminal**
 
+- <img width="1151" height="798" alt="image" src="https://github.com/user-attachments/assets/4ae85d6e-2aaa-4165-94dc-29d4bb0c7225" />
+
+
 ---
 
 ## 7️⃣ Common Mistakes to Avoid
