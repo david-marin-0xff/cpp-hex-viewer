@@ -1,3 +1,0 @@
-C:/Users/David/Desktop/cpp-hex-viewer/build/CMakeFiles/hexview.dir
-C:/Users/David/Desktop/cpp-hex-viewer/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/David/Desktop/cpp-hex-viewer/build/CMakeFiles/ZERO_CHECK.dir
