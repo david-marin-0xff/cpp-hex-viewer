@@ -2,7 +2,7 @@
 
 A simple modular C++ hex viewer that reads files as raw bytes and prints a structured hex + ASCII dump in the terminal.
 
-<img width="1382" height="557" alt="image" src="https://github.com/user-attachments/assets/559e7c62-c845-4fd9-8d70-a8fbb20ee489" />
+<img width="1462" height="632" alt="image" src="https://github.com/user-attachments/assets/09fe2650-8b33-4303-9358-91eeb16d72e2" />
 
 
 ## What it does
@@ -16,22 +16,31 @@ A simple modular C++ hex viewer that reads files as raw bytes and prints a struc
 ## Architecture
 
 main()
+
   ├── CLI (argument parsing)
+  
   ├── HexViewer (hex rendering)
+  
   └── Terminal (ANSI support)
 
 ## Build
 
 mkdir build
+
 cd build
+
 cmake ..
+
 cmake --build .
+
 
 ## Run
 
 hexview <file>
 
+
 Example:
+
 
 hexview image.jpg
 
