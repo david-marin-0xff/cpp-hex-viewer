@@ -1,4 +1,5 @@
 #include "CLI.hpp"
+#include "HexViewer.hpp"
 
 #include <iostream>
 
@@ -14,21 +15,9 @@ int main(int argc, char* argv[])
             return 0;
         }
 
-        std::cout << "File: "
-                  << cli.filename()
-                  << '\n';
+        HexViewer viewer(cli);
 
-        std::cout << "Bytes per line: "
-                  << cli.bytesPerLine()
-                  << '\n';
-
-        std::cout << "Color: "
-                  << (cli.useColor() ? "enabled" : "disabled")
-                  << '\n';
-
-        std::cout << "Uppercase: "
-                  << (cli.uppercaseHex() ? "yes" : "no")
-                  << '\n';
+        viewer.display();
     }
     catch (const std::exception& ex)
     {
