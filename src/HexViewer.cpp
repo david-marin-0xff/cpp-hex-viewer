@@ -1,5 +1,7 @@
 #include "HexViewer.hpp"
 
+#include "SignatureDB.hpp"
+
 #include <filesystem>
 #include <iomanip>
 #include <iostream>
@@ -46,8 +48,24 @@ void HexViewer::display()
               << '\n';
 
     std::cout << "Size: "
-              << fileSize
-              << " bytes\n\n";
+          << fileSize
+          << " bytes\n";
+
+std::vector<unsigned char> signatureBuffer(16);
+
+m_file.read(
+    reinterpret_cast<char*>(signatureBuffer.data()),
+    signatureBuffer.size());
+
+signatureBuffer.resize(
+    static_cast<std::size_t>(m_file.gcount()));
+
+m_file.clear();
+m_file.seekg(0, std::ios::beg);
+
+std::cout << "Type: "
+          << SignatureDB::detect(signatureBuffer)
+          << "\n\n";
 
     std::vector<unsigned char>
         buffer(m_cli.bytesPerLine());

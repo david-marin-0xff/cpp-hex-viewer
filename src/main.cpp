@@ -1,12 +1,14 @@
 #include "CLI.hpp"
 #include "HexViewer.hpp"
-
+#include "Terminal.hpp"
 #include <iostream>
 
 int main(int argc, char* argv[])
 {
     try
     {
+
+        enableVirtualTerminal();
         CLI cli(argc, argv);
 
         if (cli.showHelp())
